@@ -1,0 +1,17 @@
+{
+  "_about": "Hand-checked words. These always win over the word lists. lang = which pronunciation rules to use (en or sw). say = optional respelling of how to pronounce it. Every entry must be checked by a person before it is added.",
+  "words": {
+    "doh":    { "lang": "sw", "say": "doo",       "note": "Sheng: money", "by": "team" },
+    "manze":  { "lang": "sw",                     "note": "Sheng: man, dude", "by": "team" },
+    "m-pesa": { "lang": "sw", "say": "em pesa",   "note": "brand", "by": "team" },
+    "mpesa":  { "lang": "sw", "say": "em pesa",   "note": "brand", "by": "team" },
+    "safaricom": { "lang": "sw", "say": "safarikom", "note": "brand", "by": "team" },
+    "kudhokoma": { "lang": "sw",                  "note": "Kikuyu origin, Sheng use; co-designer's example", "by": "co-designer" },
+    "sasa":   { "lang": "sw",                     "note": "Sheng greeting / Kiswahili now", "by": "team" },
+    "poa":    { "lang": "sw",                     "note": "Sheng: cool, fine", "by": "team" },
+    "mbao":   { "lang": "sw",                     "note": "Sheng: twenty shillings", "by": "team" },
+    "msee":   { "lang": "sw",                     "note": "Sheng: person, guy", "by": "team" },
+    "fiti":   { "lang": "sw",                     "note": "Sheng: fine, okay", "by": "team" },
+    "fare":   { "lang": "en",                     "note": "matatu fare; English rules", "by": "team" }
+  }
+}

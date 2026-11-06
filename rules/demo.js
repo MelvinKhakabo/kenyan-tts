@@ -1,14 +1,9 @@
 // Step 1 demo: run with `npm run demo`.
-// Uses tiny word lists for now; Step 2 replaces them with the real lexicon.
+// Uses the real word lists and lexicon from Step 2.
 import { createCodeSwitcher } from './codeswitch.js';
+import { loadLexicon } from './load.js';
 
-const english = new Set(['customer', 'care', 'before', 'receipt', 'stage', 'send', 'money', 'the', 'is', 'at', 'meeting', 'tomorrow', 'please', 'come', 'mama', 'me', 'ok']);
-const swahili = new Set(['niko', 'kwa', 'tuma', 'si', 'pata', 'mara', 'moja', 'hii', 'ni', 'safi', 'mama', 'kesho', 'kuja', 'tafadhali', 'leo', 'sana', 'na', 'wewe', 'enda', 'fika']);
-const lexicon = new Map([
-  ['doh', { lang: 'sw', say: 'doo' }],     // Sheng: money
-  ['manze', { lang: 'sw' }],               // Sheng: man / dude
-  ['m-pesa', { lang: 'sw', say: 'em pesa' }],
-]);
+const { english, swahili, lexicon } = loadLexicon();
 
 const cs = createCodeSwitcher({ english, swahili, lexicon });
 
@@ -17,6 +12,8 @@ const sentences = [
   'Customer care: tuma doh kwa M-Pesa before 5pm, si utapata receipt mara moja.',
   'Tafadhali come to the meeting kesho, mama.',
   'Hii ni rada safi, kudhokoma ni noma.',
+  'Sasa msee, uko poa? Nimefika town, nitakuja na fare.',
+  'Your KPLC token ni 1234 5678, asante for using our service.',
 ];
 
 for (const s of sentences) {

@@ -4,6 +4,7 @@
   "private": true,
   "type": "module",
   "scripts": {
-    "demo": "node rules/demo.js"
+    "demo": "node rules/demo.js",
+    "build:lexicon": "node lexicon/build.js"
   }
 }
