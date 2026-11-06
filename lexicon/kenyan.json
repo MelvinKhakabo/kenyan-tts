@@ -12,6 +12,7 @@
     "mbao":   { "lang": "sw",                     "note": "Sheng: twenty shillings", "by": "team" },
     "msee":   { "lang": "sw",                     "note": "Sheng: person, guy", "by": "team" },
     "fiti":   { "lang": "sw",                     "note": "Sheng: fine, okay", "by": "team" },
-    "fare":   { "lang": "en",                     "note": "matatu fare; English rules", "by": "team" }
+    "fare":   { "lang": "en",                     "note": "matatu fare; English rules", "by": "team" },
+    "ya":     { "lang": "sw",                     "note": "Kiswahili 'of'; also English slang, but Kiswahili in Kenyan text", "by": "team" }
   }
 }

@@ -1,0 +1,24 @@
+# Test sentences, labelled by a person.
+# Each word is followed by /en or /sw: which pronunciation it SHOULD get
+# (how it should sound, not where it came from). Use /x to skip a word
+# (acronyms, unclear cases). Lines starting with # are ignored.
+# Add real messages from the co-designer and team. Never real personal data.
+
+Niko/sw kwa/sw stage/en tuma/sw doh/sw before/en 5pm manze/sw
+Customer/en care/en tuma/sw doh/sw kwa/sw M-Pesa/sw before/en 5pm si/sw utapata/sw receipt/en mara/sw moja/sw
+Tafadhali/sw come/en to/en the/en meeting/en kesho/sw mama/sw
+Hii/sw ni/sw rada/sw safi/sw kudhokoma/sw ni/sw noma/sw
+Sasa/sw msee/sw uko/sw poa/sw Nimefika/sw town/en nitakuja/sw na/sw fare/en
+Your/en KPLC/x token/en ni/sw 1234 asante/sw for/en using/en our/en service/en
+Dear/en customer/en umepokea/sw Ksh/x 500 kutoka/sw kwa/sw John/en
+Leo/sw tuko/sw na/sw meeting/en ya/sw parents/en saa/sw nne/sw asubuhi/sw
+Please/en confirm/en kama/sw utakuja/sw kwa/sw harusi/sw on/en Saturday/en
+Mambo/sw vipi/sw bro/en uko/sw wapi/sw
+Nimekutumia/sw the/en document/en please/en check/en and/en uniambie/sw
+Hospitali/sw itafunguliwa/sw at/en 8am kesho/sw asubuhi/sw
+The/en matatu/sw fare/en imepanda/sw sana/sw this/en week/en
+Wewe/sw ni/sw mzee/sw wa/sw kazi/sw honestly/en
+Bei/sw ya/sw unga/sw imeshuka/sw lakini/sw the/en prices/en za/sw sugar/en bado/sw ziko/sw juu/sw
+Exams/en zinaanza/sw Monday/en so/en tusome/sw kwa/sw bidii/sw
+Mzinga/sw ya/sw stima/sw iko/sw down/en tangu/sw jana/sw
+Thank/en you/en for/en your/en payment/en karibu/sw tena/sw
