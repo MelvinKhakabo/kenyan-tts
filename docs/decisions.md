@@ -1,0 +1,1 @@
+- 2026-11-06: Product is an on-device Android TTS engine for TalkBack. Gemini used only at build time, never in the speaking path.
