@@ -1,18 +1,24 @@
 {
-  "_about": "Hand-checked words. These always win over the word lists. lang = which pronunciation rules to use (en or sw). say = optional respelling of how to pronounce it. Every entry must be checked by a person before it is added.",
+  "_about": "Hand-checked words. These always win over the word lists. lang = which pronunciation rules to use (en or sw). say = optional respelling, written in that language's own spelling. Every entry must be checked by a person before it is added.",
   "words": {
-    "doh":    { "lang": "sw", "say": "doo",       "note": "Sheng: money", "by": "team" },
-    "manze":  { "lang": "sw",                     "note": "Sheng: man, dude", "by": "team" },
-    "m-pesa": { "lang": "sw", "say": "em pesa",   "note": "brand", "by": "team" },
-    "mpesa":  { "lang": "sw", "say": "em pesa",   "note": "brand", "by": "team" },
+    "doh":       { "lang": "en", "note": "Sheng: money. Sounds like English 'dough' - CO-DESIGNER TO CONFIRM", "by": "team" },
+    "manze":     { "lang": "sw", "note": "Sheng: man, dude", "by": "team" },
+    "m-pesa":    { "lang": "sw", "say": "em pesa", "note": "brand", "by": "team" },
+    "mpesa":     { "lang": "sw", "say": "em pesa", "note": "brand", "by": "team" },
     "safaricom": { "lang": "sw", "say": "safarikom", "note": "brand", "by": "team" },
-    "kudhokoma": { "lang": "sw",                  "note": "Kikuyu origin, Sheng use; co-designer's example", "by": "co-designer" },
-    "sasa":   { "lang": "sw",                     "note": "Sheng greeting / Kiswahili now", "by": "team" },
-    "poa":    { "lang": "sw",                     "note": "Sheng: cool, fine", "by": "team" },
-    "mbao":   { "lang": "sw",                     "note": "Sheng: twenty shillings", "by": "team" },
-    "msee":   { "lang": "sw",                     "note": "Sheng: person, guy", "by": "team" },
-    "fiti":   { "lang": "sw",                     "note": "Sheng: fine, okay", "by": "team" },
-    "fare":   { "lang": "en",                     "note": "matatu fare; English rules", "by": "team" },
-    "ya":     { "lang": "sw",                     "note": "Kiswahili 'of'; also English slang, but Kiswahili in Kenyan text", "by": "team" }
+    "kudhokoma": { "lang": "sw", "note": "Kikuyu origin, Sheng use; co-designer's example", "by": "co-designer" },
+    "sasa":      { "lang": "sw", "note": "Sheng greeting / Kiswahili now", "by": "team" },
+    "poa":       { "lang": "sw", "note": "Sheng: cool, fine", "by": "team" },
+    "mbao":      { "lang": "sw", "note": "Sheng: twenty shillings", "by": "team" },
+    "msee":      { "lang": "sw", "note": "Sheng: person, guy", "by": "team" },
+    "fiti":      { "lang": "sw", "note": "Sheng: fine, okay", "by": "team" },
+    "fare":      { "lang": "en", "note": "matatu fare; English rules", "by": "team" },
+    "ya":        { "lang": "sw", "note": "Kiswahili 'of'; also English slang, but Kiswahili in Kenyan text", "by": "team" },
+    "niaje":     { "lang": "sw", "note": "Sheng greeting: how are you. Co-designer: N-words are the most mispronounced", "by": "co-designer" },
+    "ngori":     { "lang": "sw", "note": "Sheng: trouble, difficult", "by": "co-designer" },
+    "nyani":     { "lang": "sw", "note": "Kiswahili: monkey; also Sheng insult", "by": "co-designer" },
+    "mbogi":     { "lang": "sw", "note": "Sheng: crew, group. CO-DESIGNER TO CONFIRM", "by": "team" },
+    "ndai":      { "lang": "sw", "note": "Sheng: car. CO-DESIGNER TO CONFIRM", "by": "team" },
+    "nduthi":    { "lang": "sw", "note": "Sheng: motorbike. CO-DESIGNER TO CONFIRM", "by": "team" }
   }
 }

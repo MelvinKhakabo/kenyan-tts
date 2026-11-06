@@ -1,6 +1,6 @@
 // Step 2: build clean word lists from the downloaded sources.
-// Reads lexicon/sources/*, writes lexicon/english.txt and lexicon/swahili.txt
-// (one lowercase word per line). Run with `npm run build:lexicon`.
+// Reads lexicon/sources/*, writes lexicon/english.txt, lexicon/swahili.txt
+// and lexicon/cmu.txt. Run with `npm run build:lexicon`.
 import { readFileSync, writeFileSync } from 'node:fs';
 
 const here = new URL('./', import.meta.url);
@@ -32,6 +32,16 @@ const englishKept = english.filter((w, rank) => !sw.has(w) || rank < 3000);
 const unique = (list) => [...new Set(list)].sort();
 writeFileSync(new URL('english.txt', here), unique(englishKept).join('\n') + '\n');
 writeFileSync(new URL('swahili.txt', here), unique(swahili).join('\n') + '\n');
+
+// CMUdict: English pronunciations, kept only for words in english.txt.
+// "word PH ON ES" per line; alternative pronunciations like "word(2)" are dropped.
+const keep = new Set(englishKept);
+const cmu = read('cmudict.dict').split(/\r?\n/)
+  .map((line) => line.split(' #')[0].trim())
+  .filter((line) => line && !/^\S+\(\d\)/.test(line))
+  .filter((line) => keep.has(line.split(' ')[0]));
+writeFileSync(new URL('cmu.txt', here), cmu.join('\n') + '\n');
+console.log(`cmu.txt: ${cmu.length} pronunciations`);
 
 const en = new Set(englishKept);
 const both = unique(swahili.filter((w) => en.has(w)));

@@ -12,3 +12,9 @@ export function loadLexicon() {
   const lexicon = new Map(Object.entries(entries).map(([w, e]) => [w.toLowerCase(), e]));
   return { english, swahili, lexicon };
 }
+
+// CMUdict pronunciations for English words: Map word -> "PH ON ES".
+export function loadCmu() {
+  const lines = readFileSync(new URL('cmu.txt', lex), 'utf8').split(/\r?\n/).filter(Boolean);
+  return new Map(lines.map((l) => { const i = l.indexOf(' '); return [l.slice(0, i), l.slice(i + 1)]; }));
+}

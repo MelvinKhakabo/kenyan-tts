@@ -1,1 +1,4 @@
-- 2026-11-06: Product is an on-device Android TTS engine for TalkBack. Gemini used only at build time, never in the speaking path.
+- 2026-11-06: Voice switching mid-sentence rejected after Edge test: long gaps, broken rhythm. Co-designer wants one continuous voice.
+- 2026-11-06: New design: whole sentence to ONE voice, words respelled for that voice. Numbers and acronyms written out first.
+- 2026-11-06: Co-designer prefers a Kenyan voice that says Kiswahili, Sheng and English well. N-initial words (niaje, ngori, nyani) are the worst today. Leading candidate: Kiswahili (Kenya) base voice. Final choice by ear test.
+- 2026-11-06: Human-centred design for every screen: follow system text size, high contrast light and dark, 48dp targets, no colour-only meaning.

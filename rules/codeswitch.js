@@ -53,8 +53,9 @@ export function swahiliRoot(word, swahili) {
 }
 
 // Split text into tokens, keeping everything so the sentence can be rebuilt.
+// Numbers keep an "am"/"pm" right after them, but never swallow a plain space.
 export function tokenize(text) {
-  const re = /([\p{L}][\p{L}'’-]*)|(\d[\d,.:]*\s?(?:am|pm)?)|(\s+)|([^\p{L}\d\s]+)/giu;
+  const re = /([\p{L}][\p{L}'’-]*)|(\d[\d,.:]*(?:\s?(?:am|pm)\b)?)|(\s+)|([^\p{L}\d\s]+)/giu;
   const tokens = [];
   let m;
   while ((m = re.exec(text)) !== null) {

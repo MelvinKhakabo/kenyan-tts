@@ -5,32 +5,46 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Kenyan TTS pronunciation test</title>
   <style>
-    body { font-family: system-ui, sans-serif; font-size: 1.15rem; line-height: 1.5; max-width: 40rem; margin: 0 auto; padding: 1rem; background: #fff; color: #111; }
+    /* Human-centred design: sizes in rem follow the phone's text size setting,
+       high contrast in light and dark mode, 48px touch targets, every control labelled. */
+    :root { --bg: #ffffff; --fg: #111111; --muted: #333333; --btn: #f0f0f0; --one: #e3f2e6; --stop: #fbe4e4; --line: #888888; --focus: #b35c00; }
+    @media (prefers-color-scheme: dark) {
+      :root { --bg: #121212; --fg: #f5f5f5; --muted: #dddddd; --btn: #2a2a2a; --one: #1f3a26; --stop: #4a1f1f; --line: #777777; --focus: #ffbf00; }
+    }
+    body { font-family: system-ui, sans-serif; font-size: 1.15rem; line-height: 1.6; max-width: 40rem; margin: 0 auto; padding: 1rem; background: var(--bg); color: var(--fg); }
     h1 { font-size: 1.5rem; }
-    h2 { font-size: 1.2rem; margin-top: 2rem; }
-    button { display: block; width: 100%; min-height: 48px; margin: 0.4rem 0; font-size: 1.1rem; border: 2px solid #111; border-radius: 8px; background: #f2f2f2; color: #111; }
-    button:focus { outline: 4px solid #ffbf00; outline-offset: 2px; }
-    button.ours { background: #e6f4ea; }
-    button.stop { background: #fde8e8; }
-    textarea { width: 100%; min-height: 6rem; font-size: 1.1rem; box-sizing: border-box; }
-    .sentence { border-top: 1px solid #ccc; padding-top: 0.5rem; }
-    #status { font-weight: bold; }
+    h2 { font-size: 1.25rem; margin-top: 2rem; }
+    h3 { font-size: 1.15rem; }
+    button, select { display: block; width: 100%; min-height: 48px; margin: 0.5rem 0; padding: 0.5rem; font: inherit; border: 2px solid var(--fg); border-radius: 8px; background: var(--btn); color: var(--fg); text-align: left; }
+    button:focus, select:focus, textarea:focus, summary:focus { outline: 4px solid var(--focus); outline-offset: 2px; }
+    button.one { background: var(--one); }
+    button.stop { background: var(--stop); }
+    textarea { width: 100%; min-height: 6rem; font: inherit; box-sizing: border-box; background: var(--bg); color: var(--fg); border: 2px solid var(--fg); border-radius: 8px; }
+    .sentence { border-top: 2px solid var(--line); padding-top: 0.5rem; }
+    .rewrite { color: var(--muted); }
+    summary { min-height: 48px; padding: 0.5rem 0; cursor: pointer; }
+    #voices, #message { font-weight: bold; }
   </style>
 </head>
 <body>
   <main>
     <h1>Kenyan TTS pronunciation test</h1>
-    <p id="status">Loading…</p>
-    <p>Each sentence has three buttons: Google's English voice, Google's Kiswahili voice, and ours. After you press a button, wait for it to finish before moving. Tell us which one sounds right, using the sentence number.</p>
+    <p id="voices">Loading voices…</p>
+    <p id="message" role="status"></p>
+    <p>Each sentence has four buttons. Press one, wait for it to finish, then tell us which sounds right using the sentence number and button number.</p>
 
     <button class="stop" id="stop">Stop speaking</button>
+
+    <h2>Voices</h2>
+    <label for="en-voice">English voice</label>
+    <select id="en-voice"></select>
+    <label for="sw-voice">Kiswahili voice</label>
+    <select id="sw-voice"></select>
 
     <h2 id="own-heading">Try your own message</h2>
     <label for="own">Paste or type a message</label>
     <textarea id="own"></textarea>
-    <button data-own="en">Your message: Google English voice</button>
-    <button data-own="sw">Your message: Google Kiswahili voice</button>
-    <button data-own="ours" class="ours">Your message: our version</button>
+    <div id="own-buttons"></div>
 
     <h2>Test sentences</h2>
     <div id="sentences"></div>
