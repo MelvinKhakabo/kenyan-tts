@@ -6,6 +6,7 @@
   "scripts": {
     "demo": "node rules/demo.js",
     "build:lexicon": "node lexicon/build.js",
-    "eval": "node eval/accuracy.js"
+    "eval": "node eval/accuracy.js",
+    "serve": "npx --yes http-server . -p 8080 -c-1"
   }
 }

@@ -1,0 +1,40 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Kenyan TTS pronunciation test</title>
+  <style>
+    body { font-family: system-ui, sans-serif; font-size: 1.15rem; line-height: 1.5; max-width: 40rem; margin: 0 auto; padding: 1rem; background: #fff; color: #111; }
+    h1 { font-size: 1.5rem; }
+    h2 { font-size: 1.2rem; margin-top: 2rem; }
+    button { display: block; width: 100%; min-height: 48px; margin: 0.4rem 0; font-size: 1.1rem; border: 2px solid #111; border-radius: 8px; background: #f2f2f2; color: #111; }
+    button:focus { outline: 4px solid #ffbf00; outline-offset: 2px; }
+    button.ours { background: #e6f4ea; }
+    button.stop { background: #fde8e8; }
+    textarea { width: 100%; min-height: 6rem; font-size: 1.1rem; box-sizing: border-box; }
+    .sentence { border-top: 1px solid #ccc; padding-top: 0.5rem; }
+    #status { font-weight: bold; }
+  </style>
+</head>
+<body>
+  <main>
+    <h1>Kenyan TTS pronunciation test</h1>
+    <p id="status">Loading…</p>
+    <p>Each sentence has three buttons: Google's English voice, Google's Kiswahili voice, and ours. After you press a button, wait for it to finish before moving. Tell us which one sounds right, using the sentence number.</p>
+
+    <button class="stop" id="stop">Stop speaking</button>
+
+    <h2 id="own-heading">Try your own message</h2>
+    <label for="own">Paste or type a message</label>
+    <textarea id="own"></textarea>
+    <button data-own="en">Your message: Google English voice</button>
+    <button data-own="sw">Your message: Google Kiswahili voice</button>
+    <button data-own="ours" class="ours">Your message: our version</button>
+
+    <h2>Test sentences</h2>
+    <div id="sentences"></div>
+  </main>
+  <script type="module" src="./app.js"></script>
+</body>
+</html>
