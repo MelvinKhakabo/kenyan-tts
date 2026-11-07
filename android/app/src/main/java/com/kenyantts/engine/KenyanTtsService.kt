@@ -1,6 +1,7 @@
 package com.kenyantts.engine
 
 import android.media.AudioFormat
+import android.os.SystemClock
 import android.speech.tts.SynthesisCallback
 import android.speech.tts.SynthesisRequest
 import android.speech.tts.TextToSpeech
@@ -19,12 +20,10 @@ import java.util.concurrent.TimeUnit
 /**
  * Kenyan TTS engine.
  *
- * TalkBack (or any app) sends us text. We ask Google's speech engine to turn it
- * into a WAV file, then stream that audio back. We never make sound ourselves.
- *
- * Step 8: pass-through only, no rewriting yet. This proves the route
- * TalkBack -> our engine -> Google -> speaker works on a real phone.
- * Step 10 adds the Kenyan rewriting before the text goes to Google.
+ * TalkBack (or any app) sends us text. We rewrite it so ONE voice says English,
+ * Kiswahili and Sheng correctly (Respell.plan), ask Google's speech engine to turn
+ * the rewritten text into a WAV file, then stream that audio back.
+ * We never make sound ourselves.
  */
 class KenyanTtsService : TextToSpeechService() {
 
@@ -39,6 +38,10 @@ class KenyanTtsService : TextToSpeechService() {
     @Volatile private var googleOk = false
     @Volatile private var stopped = false
 
+    // The word lists load in the background when the engine starts (under a second).
+    private val lexiconReady = CountDownLatch(1)
+    @Volatile private var lexicon: Lexicon? = null
+
     // One waiting latch per request we send to Google, keyed by request id.
     private val pending = ConcurrentHashMap<String, CountDownLatch>()
     private val succeeded = ConcurrentHashMap<String, Boolean>()
@@ -47,6 +50,18 @@ class KenyanTtsService : TextToSpeechService() {
 
     override fun onCreate() {
         super.onCreate()
+
+        Thread {
+            val start = SystemClock.elapsedRealtime()
+            try {
+                lexicon = LexiconLoader.load(this)
+                Log.d(TAG, "Lexicon loaded in ${SystemClock.elapsedRealtime() - start} ms")
+            } catch (e: Exception) {
+                Log.e(TAG, "Could not load lexicon; reading text unchanged", e)
+            }
+            lexiconReady.countDown()
+        }.start()
+
         // Connect to Google's engine by name, so we never connect to ourselves.
         google = TextToSpeech(this, { status ->
             googleOk = status == TextToSpeech.SUCCESS
@@ -96,7 +111,7 @@ class KenyanTtsService : TextToSpeechService() {
         return result
     }
 
-    // --- NEW: Voices. Newer Android (and TalkBack) ask for named voices -------
+    // --- Voices. Newer Android (and TalkBack) ask for named voices ------------
 
     private val voices = listOf(
         Voice("en-US", Locale("en", "US"), Voice.QUALITY_HIGH, Voice.LATENCY_NORMAL, false, emptySet<String>()),
@@ -131,6 +146,7 @@ class KenyanTtsService : TextToSpeechService() {
     override fun onSynthesizeText(request: SynthesisRequest?, callback: SynthesisCallback?) {
         if (request == null || callback == null) return
         stopped = false
+        val start = SystemClock.elapsedRealtime()
 
         val text = request.charSequenceText?.toString() ?: ""
         Log.d(TAG, "Request (${request.language}, rate ${request.speechRate}): $text")
@@ -146,14 +162,20 @@ class KenyanTtsService : TextToSpeechService() {
             return
         }
 
-        // Step 8: pass-through. Step 10 will rewrite `text` and choose the base voice here.
-        val locale = if (request.language == "swa") Locale("sw", "KE") else Locale("en", "US")
+        // Rewrite the text for one voice (or leave it unchanged: see Respell.plan).
+        lexiconReady.await(3, TimeUnit.SECONDS)
+        val requestLang = if (request.language == "swa") "sw" else "en"
+        val plan = Respell.plan(text, lexicon, Prefs.base(this), requestLang)
+        if (plan.text != text) Log.d(TAG, "Rewritten for ${plan.lang} voice: ${plan.text}")
+        val locale = if (plan.lang == "sw") Locale("sw", "KE") else Locale("en", "US")
 
-        val wav = synthesizeWithGoogle(text, locale, request.speechRate, request.pitch)
+        val wav = synthesizeWithGoogle(plan.text, locale, request.speechRate, request.pitch)
         if (wav == null) {
             if (!stopped) callback.error()
             return
         }
+        // Step 11: how long the listener waits before hearing anything.
+        Log.d(TAG, "Ready to speak after ${SystemClock.elapsedRealtime() - start} ms")
         try {
             streamWav(wav, callback)
         } finally {

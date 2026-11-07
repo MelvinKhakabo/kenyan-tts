@@ -1,4 +1,5 @@
 - 2026-11-06: Voice switching mid-sentence rejected after Edge test: long gaps, broken rhythm. Co-designer wants one continuous voice.
 - 2026-11-06: New design: whole sentence to ONE voice, words respelled for that voice. Numbers and acronyms written out first.
 - 2026-11-06: Co-designer prefers a Kenyan voice that says Kiswahili, Sheng and English well. N-initial words (niaje, ngori, nyani) are the worst today. Leading candidate: Kiswahili (Kenya) base voice. Final choice by ear test.
-- 2026-11-06: Human-centred design for every screen: follow system text size, high contrast light and dark, 48dp targets, no colour-only meaning.
+- 2026-11-06: Human-centred design for every screen: follow system text size, high contrast light and dark, 48dp targets, no colour-only meaning.- 2026-11-07: Steps 9-10: rules ported to Kotlin (identical output to the JavaScript on all 78 checks). Engine rewrites text for one Google voice; base voice is a setting (Kiswahili default). All-English text (TalkBack menus) passes through unchanged.
+- 2026-11-07: APK is built by GitHub Actions on every push to main and published at releases/download/latest/kenyan-tts.apk.
